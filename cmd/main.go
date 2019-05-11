@@ -17,7 +17,10 @@ func init() {
 
 func main() {
 	var err chan error
+
 	r := gin.Default()
+
+	gin.LoggerWithWriter(os.Stdout)
 
 	go func() {
 		err <- r.Run(":8080")
