@@ -33,6 +33,16 @@ func (h *Handler) Create(c *gin.Context) {
 }
 
 func (h *Handler) Update(c *gin.Context) {
+	u := &User{
+		Name: c.Param("name"),
+		Type: 0,
+	}
+
+	if err := updateValidator(u); err != nil {
+		c.JSON(http.StatusUnprocessableEntity, "update")
+		return
+	}
+
 	c.JSON(http.StatusOK, "update")
 }
 

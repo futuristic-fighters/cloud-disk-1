@@ -1,6 +1,9 @@
 package user
 
-import "time"
+import (
+	"errors"
+	"time"
+)
 
 type User struct {
 	ID         int       `json:"id"`
@@ -17,3 +20,21 @@ type User struct {
 type Repository interface {
 	Find(ID int) *User
 }
+
+func (u *User) CheckName() error {
+	if u.Name == "" {
+		return errors.New("empty name")
+	}
+
+	return nil
+}
+
+func (u *User) CheckType() error {
+	if u.Type != 0 && u.Type != 1 {
+		return errors.New("invalid type")
+	}
+
+	return nil
+}
+
+//...
