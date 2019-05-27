@@ -40,7 +40,7 @@ func (h *Handler) Update(c *gin.Context) {
 		return
 	}
 
-	if err := updateValidator(u); err != nil {
+	if err := updateValidator(u, h.db); err != nil {
 		c.JSON(http.StatusUnprocessableEntity, cfg.NewErrResponse(err.Code()))
 		return
 	}
