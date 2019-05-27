@@ -1,6 +1,8 @@
 package user
 
-func updateValidator(u *User) error {
+import "cloud-disk/cfg"
+
+func updateValidator(u *User) *cfg.Err {
 
 	if u.Name != "" {
 		if err := u.CheckName(); err != nil {

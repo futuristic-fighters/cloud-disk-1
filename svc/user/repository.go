@@ -1,7 +1,7 @@
 package user
 
 import (
-	"errors"
+	"cloud-disk/cfg"
 	"time"
 )
 
@@ -21,18 +21,15 @@ type Repository interface {
 	Find(ID int) *User
 }
 
-func (u *User) CheckName() error {
+func (u *User) CheckName() *cfg.Err {
 	if u.Name == "" {
-		return errors.New("empty name")
+		return cfg.NewError(cfg.UserNameValidateErr)
 	}
 
 	return nil
 }
 
-func (u *User) CheckType() error {
-	if u.Type != 0 && u.Type != 1 {
-		return errors.New("invalid type")
-	}
+func (u *User) CheckType() *cfg.Err {
 
 	return nil
 }
