@@ -1,20 +1,26 @@
 package user
 
 import (
+	"cloud-disk/logger"
 	"database/sql"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
 type Handler struct {
-	db *sql.DB
+	db     *sql.DB
+	logger logger.Logger
 }
 
-func NewHandler(db *sql.DB) *Handler {
-	return &Handler{db: db}
+func NewHandler(db *sql.DB, l logger.Logger) *Handler {
+	return &Handler{db: db, logger: l}
 }
 
 func (h *Handler) Get(c *gin.Context) {
+	c.Set("sql", "select * from users")
+	c.Set("sql1", "select * from users")
+	c.Set("sql2", "select * from users")
+	h.logger.Write("test log", " adb  as")
 	c.JSON(http.StatusOK, "get")
 }
 
