@@ -1,4 +1,4 @@
 vendor/*
-./runtime/*
-./cmd/runtime/*
+runtime/*
+cmd/runtime/*
 !.env
